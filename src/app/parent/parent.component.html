@@ -1,0 +1,61 @@
+<h2>Parent Component</h2>
+<!-- <div>
+  <app-child
+    *ngFor="let child of children"
+    [name]="child.name"
+    [money]="child.money"
+  ></app-child>
+</div>
+<button *ngFor="let child of children" (click)="sendMoney(child)">
+  Send Money to {{ child.name }}
+</button>
+<button *ngFor="let child of children" (click)="getMoney(child)">
+  Get Money from {{ child.name }}
+</button> -->
+
+<!-- <div>
+  <mat-radio-group [(ngModel)]="direction">
+    <mat-radio-button value="row">Row</mat-radio-button>
+    <mat-radio-button value="column">Column</mat-radio-button>
+  </mat-radio-group>
+</div> -->
+<button *ngFor="let child of children" (click)="sendMoney(child)">
+  Send Money to {{ child.name }}
+</button>
+<button *ngFor="let child of children" (click)="getMoney(child)">
+  Get Money from {{ child.name }}
+</button>
+<button (click)="getMoneyFromAll()">Get Money From All Children</button>
+<div [fxLayout]="direction">
+  <app-child
+    *ngFor="let child of children"
+    [name]="child.name"
+    [money]="child.money"
+    [fxFlex]="calculateFlex(child)"
+    (moneyChanged)="onMoneyChanged($event)"
+  >
+  </app-child>
+</div>
+
+<div>
+  <label>
+    <input
+      type="radio"
+      name="direction"
+      value="column"
+      [(ngModel)]="direction"
+      (change)="onDirectionChange($event)"
+    />
+    Column
+  </label>
+  <label>
+    <input
+      type="radio"
+      name="direction"
+      value="row"
+      [(ngModel)]="direction"
+      (change)="onDirectionChange($event)"
+    />
+    Row
+  </label>
+</div>
